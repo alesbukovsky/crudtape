@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "crudtape"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple in-memory CRUD store for rapid prototyping"
 authors = [{ name = "Ales Bukovsky", email = "ales.bukovsky@gmail.com" }]
 readme = "README.md"
