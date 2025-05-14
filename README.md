@@ -10,6 +10,8 @@ A lightweight in-memory [CRUD](https://developer.mozilla.org/en-US/docs/Glossary
 pip install crudtape
 ```
 
+Or add it as a dependency to you favorite build configuration file.
+
 ## Usage
 
 The store is designed to work with any model class that implements the basic `Storable` [protocol](https://github.com/alesbukovsky/crudtape/blob/main/src/crudtape/store.py#L13), which defines a minimal subset of the Pydantic [model](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel/) interface.
