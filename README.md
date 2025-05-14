@@ -12,7 +12,7 @@ pip install crudtape
 
 ## Usage
 
-The store is designed to work with any model class that implements the basic `Storable` [protocol](./src/crudtape/store.py#L13), which defines a minimal subset of the Pydantic [model](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel/) interface.
+The store is designed to work with any model class that implements the basic `Storable` [protocol](https://github.com/alesbukovsky/crudtape/blob/main/src/crudtape/store.py#L13), which defines a minimal subset of the Pydantic [model](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel/) interface.
 Importantly, the store does not depend on Pydantic itself - you can use any compatible class. This means:
 
 - Pydantic models (as-is)
@@ -24,6 +24,8 @@ The only caveat is that the store manages the object IDs internally. In essence,
 - `__init__` method that accepts keyword arguments, including an optional id of type int (used when constructing returned objects).
 - `model_dump()` method returning a dictionary representation, excluding the `id` attribute (it will be ignored by the store otherwise).
 
+An example model class using Pydantic:
+
 ```python
 import BaseModel from pydantic
 
@@ -31,9 +33,33 @@ class Pet(BaseModel):
     name: str
     age: str
     id: int = None
-```        
+```
 
-Additional examples are shown in the [test suit](./tests/crudtape/test_utils.py).
+The same but using `@dataclass` decorator:
+
+```python
+@dataclass
+class Pet:
+    name: str
+    age: int
+    id: int = None
+
+    def model_dump(self, *args, **kwargs):
+        return {"name": self.name, "age": self.age}
+```
+
+And once again, this time made from scratch:
+
+```python
+class Pet:
+    def __init__(self, **data):
+        self.name = data.get("name")
+        self.age = data.get("age")
+        self.id = data.get("id", None)
+
+    def model_dump(self, *args, **kwargs):
+        return {"name": self.name, "age": self.age}    
+```        
 
 The class is used to create a corresponding store instance:
 
