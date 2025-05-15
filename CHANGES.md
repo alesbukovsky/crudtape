@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+- It's duct tape, not duck tape, silly
+
 ## v0.1.2
 
 - Fixed links in README (for PyPI rendering)

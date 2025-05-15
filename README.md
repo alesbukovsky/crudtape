@@ -1,6 +1,6 @@
 # crudtape
 
-> _"Like duck tape but for CRUD..."_
+> _"Like duct tape but for CRUD..."_  
 
 A lightweight in-memory [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) store for Pydantic-style objects, designed for rapid prototyping. Powered by [TinyDB](https://tinydb.readthedocs.io/en/latest/index.html).
 
