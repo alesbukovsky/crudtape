@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- Fixed missing item ID values in the all() method result
+
 ## 0.1.3
 
 - It's duct tape, not duck tape, silly

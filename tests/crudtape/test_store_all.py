@@ -12,7 +12,8 @@ def test_all(store, seed_data):
     res = store.all()
     
     assert len(res) == 3
-    for obj in res:
+    for i, obj in enumerate(res):
+        assert obj.id == i + 1
         assert obj.name in exp
         assert obj.age == exp[obj.name]["age"]
         del exp[obj.name]

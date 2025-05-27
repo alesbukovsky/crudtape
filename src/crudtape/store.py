@@ -89,7 +89,9 @@ class Store(Generic[T]):
             StoreError: For any failure.
         """
         try:
-            return [self._model(**data) for data in self._table.all()]
+            # CAUTION: all() doesn't put the doc_id in the dict representation.
+
+            return [self._model(id=d.doc_id, **d) for d in self._table.all()]
         except Exception as exc:
             raise StoreError("Failed to retrieve all objects") from exc
     
@@ -109,7 +111,6 @@ class Store(Generic[T]):
         """
         try:
             data = self._table.get(doc_id=id)
-            
             if not data:
                 raise NotFoundError(f"Object not found [id={id}]")
 
